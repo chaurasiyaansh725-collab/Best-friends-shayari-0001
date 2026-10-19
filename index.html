@@ -624,6 +624,49 @@ backToTop.addEventListener("click", () => {
   window.scrollTo({ top: 0, behavior: "smooth" });
 });
 </script>
+<style>
+.heart-float {
+  position: fixed;
+  bottom: -30px;
+  color: red;
+  font-size: 16px;
+  pointer-events: none;
+  z-index: 99999;
+  animation: heartUp 5s linear forwards;
+}
 
+@keyframes heartUp {
+  0% {
+    transform: translateY(0) scale(0.7);
+    opacity: 0;
+  }
+  15% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(-110vh) scale(1.2);
+    opacity: 0;
+  }
+}
+</style>
+
+<script>
+(function () {
+  function createHeart() {
+    const heart = document.createElement("span");
+    heart.className = "heart-float";
+    heart.textContent = "♥";
+    heart.style.left = Math.random() * 100 + "vw";
+    heart.style.fontSize = (10 + Math.random() * 12) + "px";
+    heart.style.animationDuration = (4 + Math.random() * 3) + "s";
+
+    document.body.appendChild(heart);
+
+    setTimeout(() => heart.remove(), 7500);
+  }
+
+  setInterval(createHeart, 350);
+})();
+    </script>
 </body>
 </html>
